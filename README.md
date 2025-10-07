@@ -1,5 +1,5 @@
+---
 # Week 6 - Mini- Assignment Introduction to Databases
-
 ---
 
 In this assignment, we will perform basic SQL operations and interact with a provided SQLite database. The goal is to practice creating, reading, updating, and deleting data while gaining familiarity with fundamental database concepts and queries.
@@ -31,8 +31,8 @@ The dataset used is the provided SQLite database 'university_database'. It conta
 [> Database Download](https://drive.google.com/file/d/1hEXaWbL4XKRp-NvVjqRUCfPfA-Zs_Qug/view?usp=sharing)
 
 ---
-
 ### Loading the databse
+---
 
 This assignment was completed using SQLite Studio as the client.
 [SQLiteStudio Download](https://sqlitestudio.pl/)
@@ -43,7 +43,72 @@ To launch:
 2. Click the **“Add a database”** button.  
 3. Select **“Select an existing database file”** and choose the downloaded `.db` file.  
 4. The database will open and its schema will show on the left sidebar, where you can view tables and interact with the data.
+5. Click on the table 'university_rankings' and select the SQL editor button (top margin, looks like a notepad) to begin writing queries.
+6. To run the query, press the blue run button.
 
+
+---
+#### Basic Analysis
+---
+
+Conduct basic analysis and exploration on the dataset using the queries below to get a better understanding of the data.
+
+
+First, let's see how many records there are.
+
+```sql
+SELECT COUNT(*) AS total_entries
+FROM university_rankings;
+```
+There are 2200 total entries.
+
+
+Next, let's see how what countries are included in the data.
+
+```sql
+SELECT DISTINCT country
+FROM university_rankings
+ORDER BY country;
+```
+We find out, there are 59 countries in total
+
+
+Next, let's see the temporal range of the information.
+
+```sql
+SELECT MIN(year) AS start_year,
+       MAX(year) AS end_year
+FROM university_rankings;
+```
+Looks like the data goes from 2012 to 2015.
+
+
+Next, let's see the range of scores for the universities
+
+```sql
+SELECT institution, country, year, score
+FROM university_rankings
+WHERE score = (SELECT MAX(score) FROM university_rankings)
+   OR score = (SELECT MIN(score) FROM university_rankings);
+```
+Looks like Harvard scores the highest (100), and Mines ParisTech scores the lowest (43.6)
+
+
+And lastly, let's check out the average top 5 schools by rankings across all years.
+
+```sql
+SELECT institution,
+       ROUND(AVG(score), 2) AS avg_score
+FROM university_rankings
+GROUP BY institution
+ORDER BY avg_score DESC
+LIMIT 5;
+```
+
+The top 5 schools are just as expected (Harvard, Stanford, MIT, Cambridge, Oxford).
+
+---
+Now that we have a basic understanding of the dataset, we can move into Create-Read-Update-Delete operations (CRUD).
 ---
 
 #### Question #1
@@ -51,7 +116,7 @@ The ranking committee has decided to publish new results for a new university in
 
 Institution: Duke Tech | Country: USA | World Rank: 350 | Score: 60.5
 
-Type in this query:
+This query inserts the requested record into the database. Note, the remaining columns will be filled as NULL.
 
 ```sql
 INSERT INTO university_rankings (world_rank, institution, country, score, year)
@@ -68,7 +133,8 @@ The record has succesfully been inserted into the database.
 #### Question #2
 A policy consultant has reached out to you with the following question. How many universities from Japan show up in the global top 200 in 2013?
 
-Type in this query:
+The following query gets the total number (COUNT) of universities that fulfill the criteria in the conditional (Japanese + Top 200 + 2013):
+
 ```sql
 SELECT COUNT(*) 
 FROM university_rankings 
@@ -76,8 +142,6 @@ where year = 2013 and world_rank < 200 and country = 'Japan';
 ```
 
 **Result**
-![Answer](query2.png)
-
 The answer is 6 universities.
 
 ---
@@ -85,7 +149,7 @@ The answer is 6 universities.
 #### Question #3
 The score for University of Oxford in 2014 was miscalculated. Increase its score by +1.2 points. Update the row to reflect this update.
 
-Type in this query:
+The following query updates the relevant record, increasing the current score by 1.2.
 ```sql
 UPDATE university_rankings
 SET score = score + 1.2
@@ -94,8 +158,6 @@ WHERE institution = 'University of Oxford'
 ```
 
 **Result**
-![Result](query3.png)
-
 The score increaed from 97.5 to 98.7
 
 ---
@@ -104,7 +166,7 @@ The score increaed from 97.5 to 98.7
 After reviewing, the ranking committee decided that universities with a score below 45 in 2015 should not have been included in the published dataset. Clean up the records to reflect this.
 
 
-Type in this query:
+The following query deletes any records in 2015 where the score is less than 45.
 ```sql
 DELETE FROM university_rankings
 WHERE year = 2015
@@ -115,6 +177,9 @@ WHERE year = 2015
 
 ![Result](query4.png)
 
-No record with a score below 45 remains.
+As seen, no record with a score below 45 remains.
 
 ---
+We have succesfully loaded, analyzed, and performed CRUD operations on the dataset.
+---
+
