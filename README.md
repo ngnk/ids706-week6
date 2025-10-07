@@ -6,10 +6,8 @@ In this assignment, we will perform basic SQL operations and interact with a pro
 ---
 #### Question #1
 The ranking committee has decided to publish new results for a new university in 2014. Insert this university into the database.
-Institution: Duke Tech
-Country: USA
-World Rank: 350
-Score: 60.5
+
+Institution: Duke Tech | Country: USA | World Rank: 350 | Score: 60.5
 
 ---
 #### Question #2
