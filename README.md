@@ -61,6 +61,8 @@ VALUES (350, 'Duke Tech', 'USA', 60.5, 201
 **Result**
 ![Inserted Record](query1.png)
 
+The record has succesfully been inserted into the database.
+
 ---
 
 #### Question #2
@@ -75,6 +77,7 @@ where year = 2013 and world_rank < 200 and country = 'Japan';
 
 **Result**
 ![Answer](query2.png)
+
 The answer is 6 universities.
 
 ---
@@ -112,6 +115,6 @@ WHERE year = 2015
 
 ![Result](query4.png)
 
-No record remains below 45
+No record with a score below 45 remains.
 
 ---
