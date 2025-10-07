@@ -1,7 +1,45 @@
 # Week 6 - Mini- Assignment Introduction to Databases
 ---
-
 In this assignment, we will perform basic SQL operations and interact with a provided SQLite database. The goal is to practice creating, reading, updating, and deleting data while gaining familiarity with fundamental database concepts and queries.
+
+---
+### Dataset Descrption
+The dataset used is the provided SQLite database 'university_database'. It contains the following information:
+
+
+| **Column Name**       | **Description** |
+|------------------------|-----------------|
+| `world_rank`           | Global ranking of the university. |
+| `institution`          | Name of the university or institution. |
+| `country`              | Country where the institution is located. |
+| `national_rank`        | Ranking of the institution within its own country. |
+| `quality_of_education` | Ranking based on the quality of education provided. |
+| `alumni_employment`    | Ranking based on alumni employment outcomes. |
+| `quality_of_faculty`   | Ranking of faculty achievements and qualifications. |
+| `publications`         | Number of research publications produced. |
+| `influence`            | Measure of the institution’s global academic influence. |
+| `citations`            | Number of research citations received. |
+| `broad_impact`         | Broader impact score across academic and research domains. |
+| `patents`              | Number of patents attributed to the institution. |
+| `score`                | Overall composite score used to determine ranking. |
+| `year`                 | Year of the ranking data. |
+
+
+[> Database Download](https://drive.google.com/file/d/1hEXaWbL4XKRp-NvVjqRUCfPfA-Zs_Qug/view?usp=sharing)
+
+---
+### Loading the databse
+
+This assignment was completed using SQLite Studio as the client.
+[SQLiteStudio Download](https://sqlitestudio.pl/)
+
+To launch:
+
+1. Open SQLite Studio.
+2. Click the **“Add a database”** button.  
+3. Select **“Select an existing database file”** and choose the downloaded `.db` file.  
+4. The database will open and its schema will show on the left sidebar, where you can view tables and interact with the data.
+
 
 ---
 #### Question #1
